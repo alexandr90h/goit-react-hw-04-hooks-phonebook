@@ -1,67 +1,61 @@
-import React, { Component } from 'react';
 import styles from './app.module.scss';
-import InputForm from './InputMainForm/inputMainForm.jsx';
+import InputMainForm from './InputMainForm/InputMainForm.jsx';
 import ContactsList from './ContactsList/conractsList';
 import InputFind from './InputFind/inputFind';
 import FilterContactsList from './InputFind/filterContactsList.jsx';
+import { useEffect, useState } from 'react';
 
-class App extends Component{
-  state = {
-    contacts: [],
-    filter:'',
-  }
-  formSubmitHandler = data => {
-    if (this.state.contacts.find(obj => obj.name.toLowerCase() === data.name.toLowerCase())===undefined) {
-      this.setState(prev => ({
-        contacts: prev.contacts.concat(data),
-      }))
+export default function App() {
+    const [contacts, setContacts] = useState([]);
+    const [filter, setFilter] = useState('');
+
+  const formSubmitHandler = data => {
+    if (contacts.find(obj => obj.name.toLowerCase() === data.name.toLowerCase())===undefined) {
+      setContacts(prev => prev.concat(data))
     }
     else alert(`${data.name} is alreadyin contacts.`);
   }
-    inpChangHandler = data => {
-    this.setState({
-      filter: data,
+  const inpChangHandler = data => {
+    setFilter(prev=>prev=data)
+  }
+  const btnDelId = data => {
+    setContacts(prev => {
+      prev = prev.filter(obj => obj.id !== data);
     })
+    console.log(contacts)
   }
-  btnDelId = data => {
-    this.setState(prev => ({
-    contacts: prev.contacts.filter(obj=>obj.id!==data)
-    }))
-  }
-  componentDidMount() {
+
+  useEffect(() => {
     const cont = localStorage.getItem('contacts');
     const parsCont = JSON.parse(cont);
-    this.setState({contacts:parsCont})
-  }
-  componentDidUpdate(prevProp, prevState) {
-    if (this.state.contacts!==prevState.contacts) {
-          localStorage.setItem('contacts',JSON.stringify(this.state.contacts))
+    if (parsCont!==null) {
+      setContacts(prev=>prev=parsCont)
     }
-  }
-  render() {
+  },[])
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  },[contacts])
     return (
       <div className={styles.mainContainer}>
         <h1>Phonebook</h1>
         <div>
-          <InputForm onSubHand={this.formSubmitHandler} />
+          <InputMainForm onSubHand={formSubmitHandler} />
         </div>
         <div>
           <h2>Contacts</h2>
-        <InputFind onChangeFind={this.inpChangHandler} />
-          {this.state.filter === ''
+                  <InputFind onChangeFind={inpChangHandler} />
+          {filter === ''
             ?
             <ContactsList
-              stateData={this.state.contacts}
-              onBtnDelId={this.btnDelId} />
+              stateData={contacts}
+              onBtnDelId={btnDelId} />
             :
             <FilterContactsList
-              stateData={this.state.contacts}
-              changeFilter={this.state.filter}
-              onBtnDelId={this.btnDelId} />}
+              stateData={contacts}
+              changeFilter={filter}
+              onBtnDelId={btnDelId} />}
+
         </div>
     </div>
     )
-  }
-  
-}
-export default App;
+};
