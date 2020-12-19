@@ -1,13 +1,13 @@
 import styles from './app.module.scss';
 import InputMainForm from './InputMainForm/InputMainForm.jsx';
-import ContactsList from './ContactsList/conractsList';
-import InputFind from './InputFind/inputFind';
-import FilterContactsList from './InputFind/filterContactsList.jsx';
+import ContactsList from './ContactsList/ConractsList';
+import InputFind from './InputFind/InputFind';
+import FilterContactsList from './InputFind/FilterContactsList.jsx';
 import { useEffect, useState } from 'react';
 
 export default function App() {
     const [contacts, setContacts] = useState([]);
-    const [filter, setFilter] = useState('');
+    const [filterName, setFilterName] = useState('');
 
   const formSubmitHandler = data => {
     if (contacts.find(obj => obj.name.toLowerCase() === data.name.toLowerCase())===undefined) {
@@ -16,24 +16,24 @@ export default function App() {
     else alert(`${data.name} is alreadyin contacts.`);
   }
   const inpChangHandler = data => {
-    setFilter(prev=>prev=data)
+    setFilterName(prev=>prev=data)
   }
   const btnDelId = data => {
     setContacts(prev => {
       prev = prev.filter(obj => obj.id !== data);
     })
-    console.log(contacts)
   }
 
   useEffect(() => {
     const cont = localStorage.getItem('contacts');
     const parsCont = JSON.parse(cont);
     if (parsCont!==null) {
-      setContacts(prev=>prev=parsCont)
+      setContacts(prev => prev = parsCont)
     }
   },[])
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
+    console.log('gntjurmiy');
   },[contacts])
     return (
       <div className={styles.mainContainer}>
@@ -44,7 +44,7 @@ export default function App() {
         <div>
           <h2>Contacts</h2>
                   <InputFind onChangeFind={inpChangHandler} />
-          {filter === ''
+          {filterName === ''
             ?
             <ContactsList
               stateData={contacts}
@@ -52,9 +52,8 @@ export default function App() {
             :
             <FilterContactsList
               stateData={contacts}
-              changeFilter={filter}
+              changeFilter={filterName}
               onBtnDelId={btnDelId} />}
-
         </div>
     </div>
     )

@@ -1,6 +1,7 @@
-import ContactsListItem from './contactsItem';
+import ContactsListItem from './ContactsItem';
 import styles from './conractsList.module.scss'
 export default function ContactsList({ stateData, onBtnDelId }) {
+    console.log(stateData);
     return (
         <ol className={styles.contactList}>
             {stateData.map(obj => {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styles from './app.module.scss';
 import InputMainForm from './InputMainForm/InputMainForm.jsx';
-import ContactsList from './ContactsList/conractsList';
-import InputFind from './InputFind/inputFind';
-import FilterContactsList from './InputFind/filterContactsList.jsx';
+import ContactsList from './ContactsList/ConractsList';
+import InputFind from './InputFind/InputFind';
+import FilterContactsList from './InputFind/FilterContactsList.jsx';
 
 class App extends Component{
   state = {
