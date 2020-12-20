@@ -1,12 +1,12 @@
 import styles from './app.module.scss';
 import InputMainForm from './InputMainForm/InputMainForm.jsx';
-import ContactsList from './ContactsList/ConractsList';
+import ContactsList from './ContactsList/ConractsList.jsx';
 import InputFind from './InputFind/InputFind';
 import FilterContactsList from './InputFind/FilterContactsList.jsx';
 import { useEffect, useState } from 'react';
 
 export default function App() {
-    const [contacts, setContacts] = useState([]);
+    const [contacts, setContacts] = useState(()=>JSON.parse(localStorage.getItem('contacts'))??[]);
     const [filterName, setFilterName] = useState('');
 
   const formSubmitHandler = data => {
@@ -16,7 +16,7 @@ export default function App() {
     else alert(`${data.name} is alreadyin contacts.`);
   }
   const inpChangHandler = data => {
-    setFilterName(prev=>prev=data)
+    setFilterName(prev => prev = data);
   }
   const btnDelId = data => {
     setContacts(prev => {
@@ -25,16 +25,10 @@ export default function App() {
   }
 
   useEffect(() => {
-    const cont = localStorage.getItem('contacts');
-    const parsCont = JSON.parse(cont);
-    if (parsCont!==null) {
-      setContacts(prev => prev = parsCont)
-    }
-  },[])
-  useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
-    console.log('gntjurmiy');
-  },[contacts])
+    console.log(contacts);
+  }, [contacts]);
+  
     return (
       <div className={styles.mainContainer}>
         <h1>Phonebook</h1>

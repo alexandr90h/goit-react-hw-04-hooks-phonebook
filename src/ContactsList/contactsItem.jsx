@@ -1,5 +1,4 @@
 import styles from './contactsItem.module.scss';
-// import PropTypes from 'prop-types';
 
 export default function ContactsListItem({ id, name, number, onBtnDelId }) {
     return (
