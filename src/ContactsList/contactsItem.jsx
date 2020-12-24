@@ -1,13 +1,14 @@
 import styles from './contactsItem.module.scss';
 
-export default function ContactsListItem({ id, name, number, onBtnDelId }) {
+export default function ContactsListItem(props) {
+    console.log(props);
     return (
-        <li key={id} className={styles.contactItem}>
+        <li key={props.id} className={styles.contactItem}>
             <div className={styles.contentItem}>
-                <span className={styles.nameItem}>{name}: </span>
-                <span className={styles.phonItem}>{number}</span>
+                <span className={styles.nameItem}>{props.name}: </span>
+                <span className={styles.phonItem}>{props.number}</span>
             </div>
-            <button onClick={() => onBtnDelId(id)}>delete</button>
+            <button onClick={() => props.onBtnDelId(props.id)}>delete</button>
         </li>
     )
 }

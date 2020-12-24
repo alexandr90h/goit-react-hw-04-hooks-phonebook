@@ -15,7 +15,7 @@ export default function App() {
     }
     else alert(`${data.name} is alreadyin contacts.`);
   }
-  const inpChangHandler = data => {
+  const inpFindChangHandler = data => {
     setFilterName(prev => prev = data);
   }
   const btnDelId = data => {
@@ -26,8 +26,7 @@ export default function App() {
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
-    console.log(contacts);
-  }, [contacts]);
+  }, [contacts,filterName]);
   
     return (
       <div className={styles.mainContainer}>
@@ -37,7 +36,7 @@ export default function App() {
         </div>
         <div>
           <h2>Contacts</h2>
-                  <InputFind onChangeFind={inpChangHandler} />
+                  <InputFind onChangeFind={inpFindChangHandler} />
           {filterName === ''
             ?
             <ContactsList
@@ -47,7 +46,8 @@ export default function App() {
             <FilterContactsList
               stateData={contacts}
               changeFilter={filterName}
-              onBtnDelId={btnDelId} />}
+              onBtnDelId={btnDelId} />
+          }
         </div>
     </div>
     )

@@ -6,7 +6,6 @@ export default function FilterContactsList({ stateData, changeFilter, onBtnDelId
     const filterArr = stateData.filter(obj => {
         return (obj.name.toLowerCase().includes(changeFilter.toLowerCase()))
     }); 
-    console.log('FilterContactsList', filterArr, changeFilter);
     return (
         <ol className={styles.contactList}>
             {filterArr.map(obj => {
