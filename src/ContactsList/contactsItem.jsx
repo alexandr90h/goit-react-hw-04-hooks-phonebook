@@ -1,7 +1,6 @@
 import styles from './contactsItem.module.scss';
 
 export default function ContactsListItem(props) {
-    console.log(props);
     return (
         <li key={props.id} className={styles.contactItem}>
             <div className={styles.contentItem}>

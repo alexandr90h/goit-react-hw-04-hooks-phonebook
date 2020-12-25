@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styles from './inputFind.module.scss';
+
 class InputFind extends Component{
     hendlInputFilter = e => {
         this.props.onChangeFind(e.currentTarget.value)

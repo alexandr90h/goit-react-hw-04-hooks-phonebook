@@ -1,6 +1,6 @@
 import styles from './app.module.scss';
 import InputMainForm from './InputMainForm/InputMainForm.jsx';
-import ContactsList from './ContactsList/ConractsList.jsx';
+import ContactsList from './ContactsList/ContactsList.jsx';
 import InputFind from './InputFind/InputFind';
 import FilterContactsList from './InputFind/FilterContactsList.jsx';
 import { useEffect, useState } from 'react';
@@ -19,9 +19,7 @@ export default function App() {
     setFilterName(prev => prev = data);
   }
   const btnDelId = data => {
-    setContacts(prev => {
-      prev = prev.filter(obj => obj.id !== data);
-    })
+    setContacts(prev => prev.filter(obj => obj.id !== data))
   }
 
   useEffect(() => {
