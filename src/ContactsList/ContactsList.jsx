@@ -15,4 +15,3 @@ export default function ContactsList({ stateData, onBtnDelId }) {
         </ol>
     )
 }
-// { stateData, onBtnDelId }

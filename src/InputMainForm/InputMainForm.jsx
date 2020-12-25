@@ -1,4 +1,4 @@
-// import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './inputMainForm.module.scss';
 import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
@@ -42,3 +42,6 @@ export default function InputMainForm(props) {
             </div>
         );
 };
+InputMainForm.propTypes = {
+    onSubHand:PropTypes.func,
+}

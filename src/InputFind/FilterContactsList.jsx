@@ -1,5 +1,6 @@
 import ContactsListItem from '../ContactsList/ContactsItem';
 import styles from '../ContactsList/conractsList.module.scss';
+import PropTypes from 'prop-types';
 
 export default function FilterContactsList({ stateData, changeFilter, onBtnDelId }) {
     const filterArr = stateData.filter(obj => {
@@ -17,4 +18,9 @@ export default function FilterContactsList({ stateData, changeFilter, onBtnDelId
             })}
         </ol>
     )
+}
+FilterContactsList.propTypes = {
+    stateData: PropTypes.array,
+    changeFilter: PropTypes.string,
+    onBtnDelId:PropTypes.func,
 }
