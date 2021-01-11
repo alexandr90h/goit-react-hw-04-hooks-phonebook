@@ -1,5 +1,5 @@
 import styles from './app.module.scss';
-import InputMainForm from './InputMainForm/InputMainForm.jsx';
+import InputMainForm from './InputMainForm/InputMainForm';
 import ContactsList from './ContactsList/ContactsList.jsx';
 import InputFind from './InputFind/InputFind';
 import FilterContactsList from './InputFind/FilterContactsList.jsx';
